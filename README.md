@@ -30,4 +30,28 @@ Please ensure that Visual Studio Code is installed before running the script to 
 
 For installation instructions, please refer to the script itself.
 
-Enjoy your enhanced development experience with Visual Studio Code and these extensions!
+## Quick ssh settings for remote servers
+
+# Adding an SSH Key After Changing Your Internet Connection
+
+These instructions will guide you through the process of adding an SSH key to your system and configuring it for use with your new internet connection.
+
+## 1. Generate an SSH Key
+
+If you don't already have an SSH key pair, generate one using the following command:
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+Copy the public SSh ket to the server:
+
+```bash
+ssh-copy-id username@remote_server_ip
+```
+
+Test the connection:
+
+```bash
+ssh username@remote_server_ip
+```
