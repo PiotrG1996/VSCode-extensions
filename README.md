@@ -1,6 +1,17 @@
 # VSCode-extensions
 Simple installation of all VS code extensions for C++/Python development
 
+## Installation
+
+```bash
+git clone https://github.com/PiotrG1996/VSCode-extensions.git
+cd ~/VSCode-extensions
+chmod +x install_vscode_extensions.sh
+./install_vscode_extensions.sh
+```
+
+
+
 # Visual Studio Code Extensions
 
 This script installs several Visual Studio Code extensions to enhance your development environment. Here's a list of the installed extensions with brief descriptions:
