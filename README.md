@@ -32,8 +32,6 @@ For installation instructions, please refer to the script itself.
 
 ## Quick ssh settings for remote servers
 
-# Adding an SSH Key After Changing Your Internet Connection
-
 These instructions will guide you through the process of adding an SSH key to your system and configuring it for use with your new internet connection.
 
 ## 1. Generate an SSH Key
