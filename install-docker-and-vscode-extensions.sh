@@ -1,10 +1,18 @@
 #!/bin/bash
 
+sudo apt update
+
 # Check if Visual Studio Code is installed
 if ! command -v code &> /dev/null; then
     echo "Visual Studio Code is not installed. Please install it first."
     exit 1
 fi
+
+# Install Visual Studio Code
+sudo apt install -y code
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg
 
 # Install Visual Studio Code Extensions
 echo "Installing Visual Studio Code extensions..."
