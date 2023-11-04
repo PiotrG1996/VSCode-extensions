@@ -4,10 +4,23 @@ Simple installation of all VS code extensions for C++/Python development
 ## Installation
 
 ```bash
+# Download Microsoft GPG key
+sudo wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg
+
+# Add the Visual Studio Code repository
+echo "deb [arch=arm64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
+
+# Update the package list
+sudo apt update
+
+# Install Visual Studio Code
+sudo apt install code
+
+# Download and install extensions
 git clone https://github.com/PiotrG1996/VSCode-extensions.git
-cd ~/VSCode-extensions
-chmod +x install_vscode_extensions.sh
-./install_vscode_extensions.sh
+cd VSCode-extensions/
+chmod +x install-docker-and-vscode-extensions.sh 
+./install-docker-and-vscode-extensions.sh
 ```
 
 
