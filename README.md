@@ -23,8 +23,6 @@ chmod +x install-docker-and-vscode-extensions.sh
 ./install-docker-and-vscode-extensions.sh
 ```
 
-
-
 # Visual Studio Code Extensions
 
 This script installs several Visual Studio Code extensions to enhance your development environment. Here's a list of the installed extensions with brief descriptions:
@@ -58,7 +56,7 @@ For installation instructions, please refer to the script itself.
 
 These instructions will guide you through the process of adding an SSH key to your system and configuring it for use with your new internet connection.
 
-## 1. Generate an SSH Key
+## 1. Generate new SSH Key
 
 If you don't already have an SSH key pair, generate one using the following command:
 
@@ -66,7 +64,13 @@ If you don't already have an SSH key pair, generate one using the following comm
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
-Copy the public SSh ket to the server:
+- **_t rsa_**: Specifies the type of key to create (in this case, RSA).
+
+- **_b 2048_**: Specifies the number of bits in the key. For most purposes, 2048 bits is sufficient.
+
+- **_C "your_email@example.com"_**: Adds a label/comment to the key with your email address. This is optional but can be helpful for identifying your keys.
+
+Copy the public SSh key to the server:
 
 ```bash
 ssh-copy-id username@remote_server_ip
