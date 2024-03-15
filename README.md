@@ -70,13 +70,27 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
 - **_C "your_email@example.com"_**: Adds a label/comment to the key with your email address. This is optional but can be helpful for identifying your keys.
 
+Add ssh key using RSA encryption:
+
+```bash
+eval $(ssh-agent)
+ssh-add ~/.ssh/id_rsa
+ssh-add -l
+```
+
+Generate new SSH key pair and connect to remote host:
+
+```bash
+ssh -i ~/.ssh/id_rsa username@remote_server_ip
+```
+
 Copy the public SSh key to the server:
 
 ```bash
 ssh-copy-id username@remote_server_ip
 ```
 
-Test the connection:
+Connection to remote host:
 
 ```bash
 ssh username@remote_server_ip
