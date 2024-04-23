@@ -20,12 +20,14 @@ echo "Installing Visual Studio Code extensions..."
 # List of extensions to install
 extensions=(
     "ms-azuretools.vscode-docker"
+    "ms-vscode-remote.remote-containers"
     "ms-vscode.cmake-tools"
     "ms-python.python"
     "ms-vscode.cpptools"
     "nonanonno.vscode-ros2"
     "yzhang.markdown-all-in-one"
     "redhat.vscode-yaml"
+    "redhat.vscode-xml"
 )
 
 # Loop through the extensions and install them
