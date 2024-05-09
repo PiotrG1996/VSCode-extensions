@@ -200,7 +200,7 @@ services:
     devices:
       - /dev/dri:/dev/dri  # Map GPU device (if needed)
     volumes:
-      - ./Worksapce:/Workspace  # Mount local ROS workspace into the container
+      - ./Workspace:/Workspace  # Mount local ROS workspace into the container
     command: bash -c "source /opt/ros/$ROS_DISTRO/setup.bash && roscore"
 
 ```
