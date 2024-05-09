@@ -160,3 +160,105 @@ To configure ROS debugging efficiently, follow these steps:
    - With the JSON configuration file in place, you can now set breakpoints and debug multiple nodes simultaneously within your ROS environment.
 
 ![Debug result](./img/results.png)
+
+# Simple docker startup project for ROS development
+
+## Dockerfile
+```bash
+# Use a base image with Ubuntu 20.04 with the command:
+# docker build -t ros_neotic.img .
+
+FROM ros:noetic
+
+# Set environment variables for ROS 1 Neotic
+ENV ROS_DISTRO=neotic
+ENV ROS_VERSION=1
+ENV ROS_PYTHON_VERSION=3
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    gdb
+ENTRYPOINT ["./ros_entrypoint.sh"]
+CMD ["bash", "-c"]
+```
+
+## Docker-compose
+```bash
+# docker-compose up
+# docker exec -it ros_neotic.img bash
+version: '3'
+
+services:
+  ros_container:
+    image: ros_neotic.img  # Use the image built from the updated Dockerfile
+    container_name: ros_neotic
+    environment:
+      - ROS_DISTRO=neotic
+      - ROS_MASTER_URI=http://my_master_ip:11311 
+      - ROS_IP=my_ros_container_ip  
+    network_mode: host  
+    devices:
+      - /dev/dri:/dev/dri  # Map GPU device (if needed)
+    volumes:
+      - ./Worksapce:/Workspace  # Mount local ROS workspace into the container
+    command: bash -c "source /opt/ros/$ROS_DISTRO/setup.bash && roscore"
+
+```
+
+## Example of the workflow  
+
+```plaintext
+  +---------------------------------------------------+
+  |                  Start                            |
+  +---------------------------------------------------+
+                          |
+                          v
+  +---------------------------------------------------+
+  |        Open Visual Studio Code                    |
+  +---------------------------------------------------+
+                          |
+                          v
+  +---------------------------------------------------+
+  |   Install "Remote - SSH" Extension                |
+  +---------------------------------------------------+
+                          |
+                          v
+  +---------------------------------------------------+
+  |  Configure SSH Connection to Remote Machine       |
+  +---------------------------------------------------+
+                          |
+                          v
+  +---------------------------------------------------+
+  |  Connect to Remote Machine using SSH              |
+  +---------------------------------------------------+
+                          |
+                          v
+  +---------------------------------------------------+
+  |   Install "Remote - Containers" Extension         |
+  +---------------------------------------------------+
+                          |
+                          v
+  +---------------------------------------------------+
+  |  Attach to Running Docker Container               |
+  +---------------------------------------------------+
+                          |
+                          v
+  +---------------------------------------------------+
+  |  Develop Code inside Docker Container             |
+  +---------------------------------------------------+
+                          |
+                          v
+  +---------------------------------------------------+
+  |  Access Container Terminal and File System        |
+  +---------------------------------------------------+
+                          |
+                          v
+  +---------------------------------------------------+
+  |  Edit and Debug Code using VS Code                |
+  +---------------------------------------------------+
+                          |
+                          v
+  +---------------------------------------------------+
+  |                     End                           |
+  +---------------------------------------------------+
+
