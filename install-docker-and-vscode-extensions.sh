@@ -24,7 +24,7 @@ extensions=(
     "ms-vscode.cmake-tools"
     "ms-python.python"
     "ms-vscode.cpptools"
-    "nonanonno.vscode-ros2"
+    "ms-iot.vscode-ros"
     "yzhang.markdown-all-in-one"
     "redhat.vscode-yaml"
     "redhat.vscode-xml"
