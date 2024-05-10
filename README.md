@@ -39,7 +39,7 @@ This script installs several Visual Studio Code extensions to enhance your devel
 4. **C/C++ Tools** - [ms-vscode.cpptools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
    - Provides C/C++ language support, IntelliSense, and debugging features.
 
-5. **ROS 2** - [nonanonno.vscode-ros2](https://marketplace.visualstudio.com/items?itemName=nonanonno.vscode-ros2)
+5. **ROS 2** - [nonanonno.vscode-ros2](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros)
    - Enhances the development of ROS 2 projects with support for ROS-specific features.
 
 6. **Markdown All in One** - [yzhang.markdown-all-in-one](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
