@@ -161,7 +161,7 @@ To configure ROS debugging efficiently, follow these steps:
 
 ![Debug result](./img/results.png)
 
-# Simple docker startup project for ROS development
+# Simple docker startup project for [ROS development](https://github.com/ros2)
 
 ## Dockerfile
 ```bash
@@ -185,23 +185,39 @@ CMD ["bash", "-c"]
 ## Docker-compose
 ```bash
 # docker-compose up
-# docker exec -it ros_neotic.img bash
+# docker exec -it ros.img bash
 version: '3'
 
 services:
-  ros_container:
-    image: ros_neotic.img  # Use the image built from the updated Dockerfile
-    container_name: ros_neotic
+  ros:
+    container_name: ros
+    privileged: true
+    restart: unless-stopped
+    image: ros:humble  # Assuming this is a custom ROS image named "ros" with tag "humble"
     environment:
-      - ROS_DISTRO=neotic
-      - ROS_MASTER_URI=http://my_master_ip:11311 
-      - ROS_IP=my_ros_container_ip  
-    network_mode: host  
-    devices:
-      - /dev/dri:/dev/dri  # Map GPU device (if needed)
+      - ROS_DISTRO=humble
+      - ROS_VERSION=2
+      - ROS_PYTHON_VERSION=3
+      - DEBUG=1
+    shm_size: '64mb'
+    build:
+      context: .
+      dockerfile: docker/main/Dockerfile
+      target: ros
+    ports:
+      - "8000:8000"
     volumes:
-      - ./Workspace:/Workspace  # Mount local ROS workspace into the container
-    command: bash -c "source /opt/ros/$ROS_DISTRO/setup.bash && roscore"
+      - ./Workspace:/home/odroid/Workspace  # Mount ROS workspace (if needed)
+    command: roscore  # Example ROS command to run (replace with actual ROS command)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: cpu  # Correct driver specification
+              count: 1
+            - driver: gpu  # Correctly specified as a separate device
+              count: 1     # Assuming you want 1 GPU device
+
 
 ```
 
